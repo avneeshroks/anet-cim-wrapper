@@ -1,0 +1,14 @@
+{
+    "name": "avneesh/anet-cim-wrapper",
+    "description": "This is a wrapper for interaction with Authorize.net Cim Apis",
+    "type": "PHP",
+    "authors": [
+        {
+            "name": "Avneesh Gupta",
+            "email": "avneesh156@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+    }
+}
