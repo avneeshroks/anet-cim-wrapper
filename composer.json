@@ -10,6 +10,16 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "^5.3.3 || ^7.0"
-    }
+        "php": "^5.3.3 || ^7.0",
+        "authorizenet/authorizenet": "1.8.8",
+        "jms/serializer": "xsd2php-dev as 0.18.0"
+    },
+    "require-dev": {
+        "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
+        "goetas/xsd-reader": "2.*@dev"
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/goetas/serializer.git"
+    }]
 }
