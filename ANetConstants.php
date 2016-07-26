@@ -5,9 +5,11 @@ namespace App\Alonti\ANetWrapper;
 class ANetConstants
 {
   //merchant credentials
-  const MERCHANT_LOGIN_ID = "9nZdhG9KkB5E";
-  const MERCHANT_TRANSACTION_KEY = "47qrM9S3zQ34gXnx";
-  
+  const MERCHANT_LOGIN_ID = ANET_MERCHANT_LOGIN_ID;
+  const MERCHANT_TRANSACTION_KEY = ANET_MERCHANT_TRANSACTION_KEY;
+  const PICK_ENDPOINT_CLASS = ANET_HIT_ENDPOINT;
+  const VALIDATION_MODE = 'testMode';
+
   //credit card fields
   const CREDIT_CARD_NUMBER = "4111111111111111";
   const CREDIT_CARD_NUMBER_2 = "4242424242424242";
