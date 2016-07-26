@@ -8,7 +8,6 @@
             "email": "avneesh156@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
         "php": "^5.3.3 || ^7.0",
         "authorizenet/authorizenet": "1.8.8",
@@ -21,5 +20,6 @@
     "repositories": [{
         "type": "vcs",
         "url": "https://github.com/goetas/serializer.git"
-    }]
+    }],
+    "minimum-stability": "dev",
 }
