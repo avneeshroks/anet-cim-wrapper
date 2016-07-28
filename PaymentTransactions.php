@@ -65,9 +65,14 @@ class PaymentTransactions
   {
     $refId = 'ref' . time();
 
+    $order = new AnetAPI\OrderType();
+    $order->setInvoiceNumber($authorizeDetail['invoice_number']);
+
     $transactionRequestType = new AnetAPI\TransactionRequestType();
     $transactionRequestType->setTransactionType("priorAuthCaptureTransaction");
     $transactionRequestType->setRefTransId($authorizeDetail['transaction_id']);
+    $transactionRequestType->setAmount($authorizeDetail['amount']);
+    $transactionRequestType->setOrder($order);
     
     $request = new AnetAPI\CreateTransactionRequest();
     $request->setMerchantAuthentication($this->merchantAuthentication);
@@ -88,22 +93,19 @@ class PaymentTransactions
   {
     $refId = 'ref' . time();
 
-    $creditCard = new AnetAPI\CreditCardType();
-    $creditCard->setCardNumber( $authorizeDetail['card_number']);
-    $creditCard->setExpirationDate( $authorizeDetail['expiration_date'] );
 
-    $paymentOne = new AnetAPI\PaymentType();
-    $paymentOne->setCreditCard($creditCard);
+    $order = new AnetAPI\OrderType();
+    $order->setInvoiceNumber($authorizeDetail['invoice_number']);
 
     $transactionRequestType = new AnetAPI\TransactionRequestType();
     $transactionRequestType->setTransactionType("captureOnlyTransaction");
     $transactionRequestType->setAmount($authorizeDetail['amount']);
-    $transactionRequestType->setPayment($paymentOne);
     $transactionRequestType->setAuthCode($authorizeDetail['auth_code']);
+    $transactionRequestType->setOrder($order);
 
     $request = new AnetAPI\CreateTransactionRequest();
     $request->setMerchantAuthentication($this->merchantAuthentication);
-    $request->setTransactionRequest( $transactionRequestType);
+    $request->setTransactionRequest($transactionRequestType);
 
     $controller = new AnetController\CreateTransactionController($request);
     $response = $controller->executeWithApiResponse($this->pickEndpointClass);
@@ -160,6 +162,9 @@ class PaymentTransactions
     $profileToCharge = new AnetAPI\CustomerProfilePaymentType();
     $profileToCharge->setCustomerProfileId($authorizeDetail['profile_id']);
 
+    $order = new AnetAPI\OrderType();
+    $order->setInvoiceNumber($authorizeDetail['invoice_number']);
+
     $paymentProfile = new AnetAPI\PaymentProfileType();
     $paymentProfile->setPaymentProfileId($authorizeDetail['payment_profile_id']);
 
@@ -169,6 +174,7 @@ class PaymentTransactions
     $transactionRequestType->setTransactionType( "authOnlyTransaction" ); 
     $transactionRequestType->setAmount($authorizeDetail['amount']);
     $transactionRequestType->setProfile($profileToCharge);
+    $transactionRequestType->setOrder($order);
 
     $request = new AnetAPI\CreateTransactionRequest();
     $request->setMerchantAuthentication($this->merchantAuthentication);
