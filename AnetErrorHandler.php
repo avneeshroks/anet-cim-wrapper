@@ -50,4 +50,27 @@ class AnetErrorHandler
 
     return true; 
   }
+
+  public function getErrorString($response = [])
+  {
+    if(empty($response)) {
+      return false;
+    }
+
+    $errors = $response->getErrors();
+    $errorString = '';
+
+    if(empty($errors)) {
+      return false;
+    }
+
+    foreach ($errors as $error) {
+      $errorString = $errorString . "Error Code : " . $error->getErrorCode() . " | ";
+      $errorString = $errorString . "Error Message : " . $error->getErrorText() . " \n";
+    }
+
+    $errorString = rtrim($errorString, ' \n');
+
+    return $errorString;
+  }
 }

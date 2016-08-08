@@ -67,6 +67,8 @@ class PaymentTransactions
 
     $order = new AnetAPI\OrderType();
     $order->setInvoiceNumber($authorizeDetail['invoice_number']);
+    $order->setDescription($authorizeDetail['invoice_description']);
+
 
     $transactionRequestType = new AnetAPI\TransactionRequestType();
     $transactionRequestType->setTransactionType("priorAuthCaptureTransaction");
@@ -93,9 +95,14 @@ class PaymentTransactions
   {
     $refId = 'ref' . time();
 
+    $creditCard = new AnetAPI\CreditCardType();
+    $creditCard->setCardNumber( $authorizeDetail['card_number']);
+    $creditCard->setExpirationDate( $authorizeDetail['expiration_date'] );
 
     $order = new AnetAPI\OrderType();
     $order->setInvoiceNumber($authorizeDetail['invoice_number']);
+    $order->setDescription($authorizeDetail['invoice_description']);
+
 
     $transactionRequestType = new AnetAPI\TransactionRequestType();
     $transactionRequestType->setTransactionType("captureOnlyTransaction");
@@ -164,6 +171,8 @@ class PaymentTransactions
 
     $order = new AnetAPI\OrderType();
     $order->setInvoiceNumber($authorizeDetail['invoice_number']);
+    $order->setDescription($authorizeDetail['invoice_description']);
+
 
     $paymentProfile = new AnetAPI\PaymentProfileType();
     $paymentProfile->setPaymentProfileId($authorizeDetail['payment_profile_id']);
